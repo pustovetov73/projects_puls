@@ -18,17 +18,15 @@
 //   });
 
 
-var slider = tns({
+const slider = tns({
    container: '.carousel__inner',
    items: 1,
    slideBy: 'page',
    autoplay: false,
  });
- 
-$(document).ready(function(){
-    $('.carousel__inner').slick({
-        speed: 1200,
-        adaptiveHeight: true
-    });
-  });
+
+ document.querySelector('.prev').onclick = function () {
+    slider.goTo('prev');
+  };
+
 
