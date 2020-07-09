@@ -1,3 +1,4 @@
+
 // $(document).ready(function(){
 //     $('.carousel__inner').slick({
 //        speed: 1200,
@@ -23,3 +24,11 @@ var slider = tns({
    slideBy: 'page',
    autoplay: false,
  });
+ 
+$(document).ready(function(){
+    $('.carousel__inner').slick({
+        speed: 1200,
+        adaptiveHeight: true
+    });
+  });
+
