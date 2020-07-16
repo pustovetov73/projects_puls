@@ -1,0 +1,25 @@
+.reviews {
+    margin-bottom: 71px;
+
+    .review {
+        display: flex;
+        margin-bottom: 100px;
+        span {
+            display: block;
+            font-size: 14px;
+            font-weight: 300;
+            color: #646464;
+            margin-bottom: 19px;
+        }
+
+        p {
+            font-size: 16px;
+            font-weight: 300;
+            color: #0d0d0d;  
+        }
+
+        &__text {
+            margin-left: 61px;
+        }
+    }
+}
