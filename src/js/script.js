@@ -9,7 +9,6 @@ $(document).ready(function(){
           {
             breakpoint: 992,
             settings: {
-               dots: true,
                arrows: false
             }
           }
@@ -21,7 +20,6 @@ $(document).ready(function(){
         .addClass('catalog__tab_active').siblings().removeClass('catalog__tab_active')
         .closest('div.container').find('div.catalog__content').removeClass('catalog__content_active').eq($(this).index()).addClass('catalog__content_active');
     });
-
   
     function toggleSlide(item) {
       $(item).each(function(i) {
@@ -33,9 +31,85 @@ $(document).ready(function(){
       });
     };
 
-    toggleSlide('.catalog-item__link')
-    toggleSlide('.catalog-item__back')
+    toggleSlide('.catalog-item__link');
+    toggleSlide('.catalog-item__back');
 
+    //modal
+
+    $('[data-modal=consultation]').on('click', function() {
+      $('.overlay, #consultation').fadeIn('slow');
+    });
+
+    $('.modal__close').on('click', function() {
+      $('.overlay, #consultation, #thanks, #order').fadeOut('slow');
+    });
+
+    $('.button_mini').each(function(i) {
+      $(this).on('click', function() {
+        $('#order .modal__descr').text($('.catalog-item__subtitle').eq(i).text())
+        $('.overlay, #order').fadeIn('slow');
+      })
+    });
+
+    function valideForms(form){
+      $(form).validate({
+        rules: {
+          name: "required",
+          phone: "required",
+          email: {
+            required: true,
+            email: true,
+          }
+        },
+        messages: {
+          name: "Пожалуйста введите свое Имя",
+          phone: "пожалуйста введите свой телефон",
+          email: {
+            required: "Пожалуйста введите свою почту",
+            email: "неправильная почта"
+          }
+        }
+      });
+    };
+
+    valideForms('#consultation-form');
+    valideForms('#consultation form');
+    valideForms('#order form');
+    
+    $('input[name=phone]').mask("+7(999) 999-99-99");
+
+    $('form').submit(function(e) {
+      e.preventDefault();
+      $.ajax({
+        type: "POST",
+        url: "mailer/smart.php",
+        data: $(this).serialize()
+      }).done(function() {
+        $(this).find("input").val("");
+        $('#consultation, #order').fadeOut();
+        $('.overlay, #thanks').fadeIn('slow');
+
+        $('form').trigger('reset');
+      });
+      return false;
+    });
+
+    //snol scroll
+
+    $(window).scroll(function() {
+      if ($(this).scrollTop() > 1600) {
+        $('.pageup').fadeIn();
+      } else {
+        $('.pageup').fadeOut();
+      }
+    });
+
+    $("a[href^='#']").click(function(){
+      const _href = $(this).attr("href");
+      $("html, body").animate({scrollTop: $(_href).offset().top+"px"});
+      return false;
+    });
+    new WOW().init();
   });
 
 

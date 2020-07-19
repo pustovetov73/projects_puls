@@ -49,5 +49,37 @@
             }
         }
     }
+    .consultation {
+        min-height: 455px;
+        padding: 30px;
+        .title__left {
+            font-size: 20px;
+            text-align: center;
+        }
+        &__discr {
+            font-size: 18px;
+            text-align: center;
+            margin-top: 20px;
+
+        }
+
+        .feed-form {
+            margin: 10px auto;
+            width: 250px;
+        }
+    }
+
+    .carousel {
+        display: none;
+        &__inner {
+            width: 575px;
+            img {
+                display: block;
+                width: 300px;
+                margin: 0 auto;
+            }
+        }
+       
+    }
 }
 

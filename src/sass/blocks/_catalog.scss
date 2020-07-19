@@ -1,5 +1,10 @@
 .catalog {
     padding-bottom: 100px;
+
+    .zalupa {
+        display: flex;
+        
+    }
     &__tabs {
         margin-top: 70px;
         list-style-type: none;
